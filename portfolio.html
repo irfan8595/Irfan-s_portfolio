@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Irfan Siddique — Social Media Manager</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C97A;
+    --dark: #0E0D0B;
+    --dark2: #181714;
+    --dark3: #242219;
+    --text: #F0EDE6;
+    --muted: #9A9589;
+    --border: rgba(201,168,76,0.2);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--dark);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.2rem 4rem;
+    background: rgba(14,13,11,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 0.5px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.08em;
+    color: var(--gold);
+  }
+
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    text-decoration: none;
+    color: var(--muted);
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 8rem 4rem 4rem;
+    position: relative;
+    border-bottom: 0.5px solid var(--border);
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 80% 40%, rgba(201,168,76,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 7vw, 6rem);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    color: var(--text);
+    margin-bottom: 0.4rem;
+  }
+
+  .hero-role {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.2rem, 2.5vw, 2rem);
+    font-weight: 400;
+    font-style: italic;
+    color: var(--gold);
+    margin-bottom: 2rem;
+  }
+
+  .hero-tagline {
+    max-width: 520px;
+    color: var(--muted);
+    font-size: 1rem;
+    line-height: 1.8;
+    margin-bottom: 3rem;
+  }
+
+  .hero-stats {
+    display: flex; gap: 3rem;
+    border-top: 0.5px solid var(--border);
+    padding-top: 2rem;
+    max-width: 520px;
+  }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: var(--gold-light);
+    display: block;
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 0.3rem;
+    display: block;
+  }
+
+  .hero-cta {
+    position: absolute;
+    bottom: 3rem; right: 4rem;
+    display: flex; gap: 1rem;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 0.7rem 1.6rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: none;
+  }
+
+  .btn-gold {
+    background: var(--gold);
+    color: var(--dark);
+    font-weight: 500;
+  }
+
+  .btn-gold:hover { background: var(--gold-light); }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--gold);
+    border: 0.5px solid var(--gold);
+  }
+
+  .btn-outline:hover { background: rgba(201,168,76,0.08); }
+
+  /* SECTIONS */
+  section { padding: 6rem 4rem; border-bottom: 0.5px solid var(--border); }
+
+  .section-eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.8rem;
+  }
+
+  .section-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    font-weight: 400;
+    margin-bottom: 3rem;
+    color: var(--text);
+  }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .about-text p {
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.9;
+    margin-bottom: 1.2rem;
+  }
+
+  .skills-list {
+    display: flex; flex-wrap: wrap; gap: 0.6rem;
+    margin-top: 1.5rem;
+  }
+
+  .skill-tag {
+    border: 0.5px solid var(--border);
+    color: var(--gold-light);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.35rem 0.8rem;
+  }
+
+  .about-highlights { display: flex; flex-direction: column; gap: 1.5rem; }
+
+  .highlight-card {
+    background: var(--dark2);
+    border: 0.5px solid var(--border);
+    padding: 1.4rem 1.6rem;
+  }
+
+  .highlight-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .highlight-label {
+    font-size: 0.78rem;
+    color: var(--muted);
+    margin-top: 0.3rem;
+    letter-spacing: 0.05em;
+  }
+
+  /* CLIENTS */
+  .clients-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .client-card {
+    background: var(--dark2);
+    border: 0.5px solid var(--border);
+    padding: 2rem;
+    transition: border-color 0.2s;
+  }
+
+  .client-card:hover { border-color: rgba(201,168,76,0.5); }
+
+  .client-niche {
+    font-size: 0.68rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+  }
+
+  .client-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--text);
+    margin-bottom: 0.2rem;
+  }
+
+  .client-location {
+    font-size: 0.78rem;
+    color: var(--muted);
+    margin-bottom: 1.5rem;
+  }
+
+  .client-metrics {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    border-top: 0.5px solid var(--border);
+    padding-top: 1.2rem;
+  }
+
+  .metric-val {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    color: var(--gold-light);
+  }
+
+  .metric-key {
+    font-size: 0.68rem;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-top: 0.1rem;
+  }
+
+  .client-work {
+    font-size: 0.82rem;
+    color: var(--muted);
+    line-height: 1.7;
+    border-top: 0.5px solid var(--border);
+    padding-top: 1.2rem;
+  }
+
+  .client-link {
+    display: inline-block;
+    margin-top: 1.2rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-decoration: none;
+    border-bottom: 0.5px solid var(--gold);
+    padding-bottom: 1px;
+    transition: opacity 0.2s;
+  }
+
+  .client-link:hover { opacity: 0.7; }
+
+  /* WHAT I DO */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 0.5px solid var(--border);
+  }
+
+  .service-item {
+    background: var(--dark);
+    padding: 2.5rem 2rem;
+  }
+
+  .service-icon {
+    font-size: 1.4rem;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .service-title {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 0.6rem;
+  }
+
+  .service-desc {
+    font-size: 0.84rem;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+
+  /* CONTACT */
+  .contact-inner {
+    max-width: 600px;
+  }
+
+  .contact-inner p {
+    color: var(--muted);
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+  }
+
+  .contact-links {
+    display: flex; flex-direction: column; gap: 0.8rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .contact-row {
+    display: flex; align-items: center; gap: 1rem;
+    color: var(--muted);
+    font-size: 0.88rem;
+  }
+
+  .contact-row span:first-child {
+    font-size: 0.68rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    min-width: 60px;
+  }
+
+  .contact-row a {
+    color: var(--text);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .contact-row a:hover { color: var(--gold); }
+
+  /* FOOTER */
+  footer {
+    padding: 2rem 4rem;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+
+  footer p { font-size: 0.75rem; color: var(--muted); }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { padding: 7rem 1.5rem 4rem; }
+    .hero-cta { position: static; margin-top: 2rem; }
+    section { padding: 4rem 1.5rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .clients-grid { grid-template-columns: 1fr; }
+    .services-grid { grid-template-columns: 1fr; }
+    footer { padding: 1.5rem; flex-direction: column; gap: 0.5rem; text-align: center; }
+    .hero-stats { gap: 1.8rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Irfan Siddique</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#clients">Work</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <p class="hero-eyebrow">Social Media Manager &amp; Content Strategist</p>
+  <h1 class="hero-name">Irfan<br>Siddique</h1>
+  <p class="hero-role">Brands grow when the right story meets the right audience.</p>
+  <p class="hero-tagline">
+    Delhi-based social media manager with hands-on experience scaling bridal fashion brands on Instagram — turning Chandni Chowk heritage into viral Reels with real results.
+  </p>
+  <div class="hero-stats">
+    <div>
+      <span class="stat-num">3</span>
+      <span class="stat-label">Brands managed</span>
+    </div>
+    <div>
+      <span class="stat-num">6M+</span>
+      <span class="stat-label">Total views delivered</span>
+    </div>
+    <div>
+      <span class="stat-num">6</span>
+      <span class="stat-label">Months experience</span>
+    </div>
+  </div>
+  <div class="hero-cta">
+    <a href="#clients" class="btn btn-gold">See My Work</a>
+    <a href="#contact" class="btn btn-outline">Get in Touch</a>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <p class="section-eyebrow">About Me</p>
+  <h2 class="section-heading">The person behind the strategy</h2>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>
+        I'm Irfan — a BCA graduate from BVIMR, New Delhi, with a background in software development and a real-world track record in social media management. For six months, I ran Instagram for three bridal fashion stores in Chandni Chowk, helping them grow followers, increase Reels views, and turn content into customers.
+      </p>
+      <p>
+        My approach is simple: understand the brand, know the audience, create content that actually stops the scroll. I combine data analysis with content instinct to build strategies that work — not just look good on paper.
+      </p>
+      <p>
+        Beyond social media, I build software products and create my own short-form content — so I understand both the technical and creative side of digital growth.
+      </p>
+      <div class="skills-list">
+        <span class="skill-tag">Instagram Reels</span>
+        <span class="skill-tag">Content Strategy</span>
+        <span class="skill-tag">Audience Growth</span>
+        <span class="skill-tag">Analytics</span>
+        <span class="skill-tag">Video Editing</span>
+        <span class="skill-tag">Caption Writing</span>
+        <span class="skill-tag">Hashtag Research</span>
+        <span class="skill-tag">Brand Positioning</span>
+      </div>
+    </div>
+    <div class="about-highlights">
+      <div class="highlight-card">
+        <div class="highlight-num">41K+</div>
+        <div class="highlight-label">Followers on a single managed account (Nazakat)</div>
+      </div>
+      <div class="highlight-card">
+        <div class="highlight-num">700K+</div>
+        <div class="highlight-label">Views on a single Reel (Gorvi's Creation)</div>
+      </div>
+      <div class="highlight-card">
+        <div class="highlight-num">553K</div>
+        <div class="highlight-label">Views on a single pinned Reel (Nazakat Bridal Store)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLIENT WORK -->
+<section id="clients">
+  <p class="section-eyebrow">Client Work</p>
+  <h2 class="section-heading">Brands I've grown</h2>
+  <div class="clients-grid">
+
+    <!-- Nazakat -->
+    <div class="client-card">
+      <p class="client-niche">Bridal Lehenga &amp; Premium Fashion</p>
+      <h3 class="client-name">Nazakat The Bridal Store</h3>
+      <p class="client-location">Chandni Chowk, Delhi — Est. 1999</p>
+      <div class="client-metrics">
+        <div>
+          <div class="metric-val">41K</div>
+          <div class="metric-key">Followers</div>
+        </div>
+        <div>
+          <div class="metric-val">624</div>
+          <div class="metric-key">Posts</div>
+        </div>
+        <div>
+          <div class="metric-val">553K</div>
+          <div class="metric-key">Top Reel Views</div>
+        </div>
+        <div>
+          <div class="metric-val">255K+</div>
+          <div class="metric-key">Other Reel Views</div>
+        </div>
+      </div>
+      <p class="client-work">
+        Managed content strategy for a premium bridal lehenga store. Created and scheduled Reels showcasing designer collections, styled shoots, and appointment-driven CTAs. Built brand trust through consistent aesthetic and storytelling.
+      </p>
+      <a href="https://www.instagram.com/nazakat_bridalstore" target="_blank" class="client-link">View Profile →</a>
+    </div>
+
+    <!-- Gorvi's Creation -->
+    <div class="client-card">
+      <p class="client-niche">Clothing Brand — Wholesale &amp; Retail</p>
+      <h3 class="client-name">Gorvi's Creation</h3>
+      <p class="client-location">Maliwara, Chandni Chowk, Delhi</p>
+      <div class="client-metrics">
+        <div>
+          <div class="metric-val">47.8K</div>
+          <div class="metric-key">Followers</div>
+        </div>
+        <div>
+          <div class="metric-val">1,649</div>
+          <div class="metric-key">Posts</div>
+        </div>
+        <div>
+          <div class="metric-val">701K</div>
+          <div class="metric-key">Top Reel Views</div>
+        </div>
+        <div>
+          <div class="metric-val">528K+</div>
+          <div class="metric-key">Other Reel Views</div>
+        </div>
+      </div>
+      <p class="client-work">
+        Handled Instagram for a verified clothing brand covering bridal lehengas, engagement wear, and sarees. Produced high-engagement Reels that achieved 700K+ views organically. Managed multi-category product showcasing across Highlights.
+      </p>
+      <a href="https://www.instagram.com/gorviscreation" target="_blank" class="client-link">View Profile →</a>
+    </div>
+
+    <!-- Kali by Chhabra -->
+    <div class="client-card">
+      <p class="client-niche">Ethnic Wear &amp; Boutique</p>
+      <h3 class="client-name">Kali by Chhabra 1818</h3>
+      <p class="client-location">Chandni Chowk, Delhi</p>
+      <div class="client-metrics">
+        <div>
+          <div class="metric-val">2,052</div>
+          <div class="metric-key">Followers</div>
+        </div>
+        <div>
+          <div class="metric-val">264</div>
+          <div class="metric-key">Posts</div>
+        </div>
+        <div>
+          <div class="metric-val">Growth</div>
+          <div class="metric-key">Focus</div>
+        </div>
+        <div>
+          <div class="metric-val">Visual</div>
+          <div class="metric-key">Identity</div>
+        </div>
+      </div>
+      <p class="client-work">
+        Built and maintained a visual identity for an ethnic boutique focused on premium fabrics and handcrafted lehengas. Established content pillars around timeless elegance — static posts, Reels, and brand storytelling for a growing audience.
+      </p>
+      <a href="https://www.instagram.com/kalibychhabra_1818" target="_blank" class="client-link">View Profile →</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <p class="section-eyebrow">What I Offer</p>
+  <h2 class="section-heading">How I can help your brand</h2>
+  <div class="services-grid">
+    <div class="service-item">
+      <span class="service-icon">&#9654;</span>
+      <h3 class="service-title">Reels Production &amp; Strategy</h3>
+      <p class="service-desc">Conceptualising, scripting, and editing short-form video content designed for reach and engagement. Hooks that stop the scroll, edits that hold attention.</p>
+    </div>
+    <div class="service-item">
+      <span class="service-icon">&#9650;</span>
+      <h3 class="service-title">Audience Growth</h3>
+      <p class="service-desc">Growing your follower base through consistent content calendars, hashtag strategy, and engagement tactics — organic growth that actually converts.</p>
+    </div>
+    <div class="service-item">
+      <span class="service-icon">&#9670;</span>
+      <h3 class="service-title">Content Strategy &amp; Planning</h3>
+      <p class="service-desc">Monthly content calendars aligned with your business goals. Every post has a purpose — product showcasing, trust-building, or driving direct messages and appointments.</p>
+    </div>
+    <div class="service-item">
+      <span class="service-icon">&#9632;</span>
+      <h3 class="service-title">Analytics &amp; Reporting</h3>
+      <p class="service-desc">Tracking reach, impressions, saves, and engagement rate to refine strategy. Data-backed decisions, not guesswork.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <p class="section-eyebrow">Get in Touch</p>
+  <h2 class="section-heading">Let's work together</h2>
+  <div class="contact-inner">
+    <p>Looking for a social media manager who understands fashion brands, can create content that reaches hundreds of thousands of people, and actually delivers? Let's talk.</p>
+    <div class="contact-links">
+      <div class="contact-row">
+        <span>Email</span>
+        <a href="mailto:irfansiddique26174@gmail.com">irfansiddique26174@gmail.com</a>
+      </div>
+      <div class="contact-row">
+        <span>Phone</span>
+        <a href="tel:+918595828882">+91 8595828882</a>
+      </div>
+      <div class="contact-row">
+        <span>Location</span>
+        <span style="color: var(--text);">Delhi, India</span>
+      </div>
+      <div class="contact-row">
+        <span>GitHub</span>
+        <a href="https://github.com/irfan8595" target="_blank">github.com/irfan8595</a>
+      </div>
+    </div>
+    <a href="mailto:irfansiddique26174@gmail.com" class="btn btn-gold">Send me a message</a>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Irfan Siddique. All rights reserved.</p>
+  <p>Delhi, India</p>
+</footer>
+
+</body>
+</html>
